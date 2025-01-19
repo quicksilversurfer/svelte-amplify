@@ -3,10 +3,16 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm use 20
-        - npm install
+        - "npm i"
     build:
       commands:
-        - npm run build
+        - "npm run build"
+        - "cd build/compute/default/"
+        - "npm i --omit=dev"
   artifacts:
-    baseDirectory: .amplify-hosting
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
